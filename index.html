@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro de usuários · CRUDCRUD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Cadastro de usuários</h1>
+    <p>Um CRUD completo (GET, POST, PUT e DELETE) conversando com a API do <a href="https://crudcrud.com" target="_blank" rel="noopener">CRUDCRUD</a>. Cada requisição aparece no painel ao lado.</p>
+  </header>
+
+  <main class="layout">
+    <section class="coluna">
+
+      <div class="bloco">
+        <h2>Conexão</h2>
+        <p class="ajuda">Abra o <a href="https://crudcrud.com" target="_blank" rel="noopener">crudcrud.com</a>, copie o código do seu endpoint (a parte final da URL) e cole aqui. Ele vale por 24 horas e aceita 100 requisições.</p>
+        <label for="apiKey">Chave da API</label>
+        <input id="apiKey" type="text" placeholder="ex.: 3f1c9a7e2b5d4c0f8a6e1d2b9c7a4e5f" autocomplete="off" spellcheck="false">
+        <label for="recurso">Recurso</label>
+        <input id="recurso" type="text" value="usuarios" autocomplete="off" spellcheck="false">
+        <p class="url-final" id="urlBase"></p>
+      </div>
+
+      <div class="bloco">
+        <h2 id="tituloForm">Novo usuário</h2>
+        <form id="form" novalidate>
+          <input type="hidden" id="idEdicao">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" required autocomplete="off">
+          <div class="duas-colunas">
+            <div>
+              <label for="email">E-mail</label>
+              <input id="email" type="email" autocomplete="off">
+            </div>
+            <div>
+              <label for="idade">Idade</label>
+              <input id="idade" type="number" min="0" max="130">
+            </div>
+          </div>
+          <div class="acoes">
+            <button type="submit" id="btnSalvar" class="primario">Criar usuário</button>
+            <button type="button" id="btnCancelar" class="secundario" hidden>Cancelar edição</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="bloco">
+        <div class="cabecalho-lista">
+          <h2>Usuários cadastrados</h2>
+          <button type="button" id="btnListar" class="secundario">Atualizar lista</button>
+        </div>
+        <ul id="lista" class="lista"></ul>
+        <p id="vazio" class="vazio">Nenhum usuário carregado. Informe a chave e clique em “Atualizar lista”.</p>
+      </div>
+
+    </section>
+
+    <aside class="coluna">
+      <div class="bloco log-bloco">
+        <div class="cabecalho-lista">
+          <h2>Requisições HTTP</h2>
+          <button type="button" id="btnLimpar" class="secundario">Limpar</button>
+        </div>
+        <ol id="log" class="log"></ol>
+        <p id="logVazio" class="vazio">As requisições feitas aparecem aqui, com método, URL, status e resposta.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
